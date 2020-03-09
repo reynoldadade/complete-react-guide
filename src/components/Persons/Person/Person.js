@@ -1,24 +1,43 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
+import classes from './Person.css';
 import './Person.css';
 
-const StyledDiv = styled.div`
-	width: 60%;
-	margin: 16px auto;
-	border: 1px solid #eee;
-	box-shadow: 0 2px 3px #ccc;
-	padding: 16px;
-	text-align: center;
-`;
-const Person = props => {
-	return (
-		<StyledDiv>
-			<p onClick={props.click}>
-				I am a {props.name} and I am {props.age} years old!
-			</p>
-			<input type="text" onChange={props.changed} />
-		</StyledDiv>
-	);
-};
+class Person extends Component {
+	// static getDerivedStateFromProps(props, state) {
+	// 	console.log('[Persons.js getDerivedStateFromProps');
+	// 	return state;
+	// }
+
+	// componentWillReceiveProps(props) {
+	// 	console.log('[Person.js] componentsWillRecieveProps', props);
+	// }
+
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log('[Persons.js] shouldComponentUpdate');
+		return true;
+	}
+
+	getSnapshotBeforeUpdate(prevProps, prevState) {
+		console.log('[Persons.js] getSnapShotBeforeUpdate');
+		return { message: 'snapshot!!!' };
+	}
+
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		console.log('[Persons.js] componentDidUpdate');
+		console.log('Component did update -- snapshot', snapshot);
+	}
+	render() {
+		console.log('[Persons.js] render');
+		return (
+			<div className={classes.Person}>
+				<p onClick={this.props.click}>
+					I am a {this.props.name} and I am {this.props.age} years
+					old!
+				</p>
+				<input type="text" onChange={this.props.changed} />
+			</div>
+		);
+	}
+}
 
 export default Person;
