@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import WithClass from '../../../hoc/WithClass';
 import classes from './Person.css';
 import './Person.css';
 
@@ -29,13 +30,13 @@ class Person extends Component {
 	render() {
 		console.log('[Persons.js] render');
 		return (
-			<div className={classes.Person}>
+			<WithClass classes={classes.Person}>
 				<p onClick={this.props.click}>
 					I am a {this.props.name} and I am {this.props.age} years
 					old!
 				</p>
 				<input type="text" onChange={this.props.changed} />
-			</div>
+			</WithClass>
 		);
 	}
 }
