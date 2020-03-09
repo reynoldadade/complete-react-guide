@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import Person from './Person/Person';
 
 class Persons extends Component {
+	componentWillUnmount() {
+		console.log('[Persons.js] componentWillUnmount');
+	}
 	render() {
+		console.log('[Persons.js] rendering');
 		return this.props.persons.map((person, index) => {
 			return (
 				<Person

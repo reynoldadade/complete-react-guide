@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = props => {
-	let classesAssign = [];
+	useEffect(() => {
+		console.log('[Cockpit.js] useEffect');
+		setTimeout(() => {
+			alert('Saved data to cloud!');
+		}, 1000);
+
+		return () => {
+			console.log('[Cockpit.js] cleanup work in useEffect');
+		};
+	}, []);
+
+	useEffect(() => {
+		console.log('[Cockpit.js] in 2nd useEffect');
+		return () => {
+			console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+		};
+	});
+
+	const classesAssign = [];
 	let buttonClass = [classes.Button];
 
 	if (props.showPersons) {
